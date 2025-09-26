@@ -1,0 +1,45 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "power-modules/dependency-graph",
+    "description": "A modular dependency graph tool for PHP applications using the Power Modules framework. Visualizes and analyzes encapsulated module dependencies.",
+    "type": "library",
+    "keywords": [
+        "modular",
+        "framework",
+        "power-modules",
+        "dependency-graph",
+        "module-dependencies",
+        "visualization",
+        "analysis",
+        "php",
+        "dependency-visualizer",
+        "architecture",
+        "encapsulation"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgenii Teterin",
+            "email": "roundcubez@gmail.com",
+            "role": "Owner"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modular\\DependencyGraph\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modular\\DependencyGraph\\Test\\": "test/"
+        }
+    },
+    "require": {
+        "power-modules/framework": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.3",
+        "friendsofphp/php-cs-fixer": "^3.88",
+        "phpstan/phpstan": "^2.1"
+    }
+}
