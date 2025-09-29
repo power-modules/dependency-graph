@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbfb521844bb89dc019c324b9c1bc350",
+    "content-hash": "bff02fcf5c8f17f8cf4e4aeb69293201",
     "packages": [
         {
             "name": "power-modules/framework",
-            "version": "v2.0.0",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/power-modules/framework.git",
-                "reference": "51434da5c91976925210dfeade95730ccd999d9d"
+                "reference": "d18e1c1755f3f5707d86a79512e38d4935bf7ab6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/power-modules/framework/zipball/51434da5c91976925210dfeade95730ccd999d9d",
-                "reference": "51434da5c91976925210dfeade95730ccd999d9d",
+                "url": "https://api.github.com/repos/power-modules/framework/zipball/d18e1c1755f3f5707d86a79512e38d4935bf7ab6",
+                "reference": "d18e1c1755f3f5707d86a79512e38d4935bf7ab6",
                 "shasum": ""
             },
             "require": {
@@ -64,9 +64,70 @@
             ],
             "support": {
                 "issues": "https://github.com/power-modules/framework/issues",
-                "source": "https://github.com/power-modules/framework/tree/v2.0.0"
+                "source": "https://github.com/power-modules/framework/tree/v2.1.0"
             },
-            "time": "2025-09-25T18:56:54+00:00"
+            "time": "2025-09-27T14:01:49+00:00"
+        },
+        {
+            "name": "power-modules/plugin",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/power-modules/plugin.git",
+                "reference": "d1b83968a24ea522d0aa669ab79059ba18b0afba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/power-modules/plugin/zipball/d1b83968a24ea522d0aa669ab79059ba18b0afba",
+                "reference": "d1b83968a24ea522d0aa669ab79059ba18b0afba",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.4",
+                "power-modules/framework": "^2.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.88",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Modular\\Plugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Evgenii Teterin",
+                    "email": "roundcubez@gmail.com",
+                    "role": "Owner"
+                }
+            ],
+            "description": "A modular plugin component for the Power Modules framework, enabling seamless integration and extension of functionalities.",
+            "keywords": [
+                "component-based",
+                "dependency-injection",
+                "di-container",
+                "ecosystem",
+                "encapsulation",
+                "framework",
+                "microservices",
+                "modular",
+                "modular-architecture",
+                "plugin-system",
+                "power-modules",
+                "powermodulesetup"
+            ],
+            "support": {
+                "issues": "https://github.com/power-modules/plugin/issues",
+                "source": "https://github.com/power-modules/plugin/tree/v1.0.0"
+            },
+            "time": "2025-09-28T23:40:03+00:00"
         },
         {
             "name": "psr/container",
@@ -2982,16 +3043,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.3.3",
+            "version": "v7.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "cb0102a1c5ac3807cf3fdf8bea96007df7fdbea7"
+                "reference": "2b9c5fafbac0399a20a2e82429e2bd735dcfb7db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/cb0102a1c5ac3807cf3fdf8bea96007df7fdbea7",
-                "reference": "cb0102a1c5ac3807cf3fdf8bea96007df7fdbea7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/2b9c5fafbac0399a20a2e82429e2bd735dcfb7db",
+                "reference": "2b9c5fafbac0399a20a2e82429e2bd735dcfb7db",
                 "shasum": ""
             },
             "require": {
@@ -3056,7 +3117,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.3.3"
+                "source": "https://github.com/symfony/console/tree/v7.3.4"
             },
             "funding": [
                 {
@@ -3076,7 +3137,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-08-25T06:35:40+00:00"
+            "time": "2025-09-22T15:31:00+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -4305,16 +4366,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v7.3.3",
+            "version": "v7.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "17a426cce5fd1f0901fefa9b2a490d0038fd3c9c"
+                "reference": "f96476035142921000338bad71e5247fbc138872"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/17a426cce5fd1f0901fefa9b2a490d0038fd3c9c",
-                "reference": "17a426cce5fd1f0901fefa9b2a490d0038fd3c9c",
+                "url": "https://api.github.com/repos/symfony/string/zipball/f96476035142921000338bad71e5247fbc138872",
+                "reference": "f96476035142921000338bad71e5247fbc138872",
                 "shasum": ""
             },
             "require": {
@@ -4329,7 +4390,6 @@
             },
             "require-dev": {
                 "symfony/emoji": "^7.1",
-                "symfony/error-handler": "^6.4|^7.0",
                 "symfony/http-client": "^6.4|^7.0",
                 "symfony/intl": "^6.4|^7.0",
                 "symfony/translation-contracts": "^2.5|^3.0",
@@ -4372,7 +4432,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v7.3.3"
+                "source": "https://github.com/symfony/string/tree/v7.3.4"
             },
             "funding": [
                 {
@@ -4392,7 +4452,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-08-25T06:35:40+00:00"
+            "time": "2025-09-11T14:36:48+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -4450,7 +4510,9 @@
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
+    "platform": {
+        "php": "^8.4"
+    },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
