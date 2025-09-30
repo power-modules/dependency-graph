@@ -29,13 +29,14 @@ class DependencyGraphSetupTest extends TestCase
 {
     public function testSetupCollectsModuleOnPrePhase(): void
     {
+        $rootContainer = new ConfigurableContainer();
         $graph = new DependencyGraph();
         $setup = new DependencyGraphSetup($graph);
 
         // Simulate registering three modules
-        $setup->setup($this->makeDto(new DatabaseModule(), SetupPhase::Pre));
-        $setup->setup($this->makeDto(new LoggerModule(), SetupPhase::Pre));
-        $setup->setup($this->makeDto(new UserModule(), SetupPhase::Pre));
+        $setup->setup($this->makeDto(new DatabaseModule(), SetupPhase::Pre, $rootContainer));
+        $setup->setup($this->makeDto(new LoggerModule(), SetupPhase::Pre, $rootContainer));
+        $setup->setup($this->makeDto(new UserModule(), SetupPhase::Pre, $rootContainer));
 
         $collected = $setup->getDependencyGraph();
 
@@ -59,27 +60,33 @@ class DependencyGraphSetupTest extends TestCase
         $userNode = $collected->getModule(UserModule::class);
         self::assertNotNull($userNode);
         self::assertSame('UserModule', $userNode->shortName);
+        self::assertTrue($rootContainer->has(DependencyGraph::class));
     }
 
     public function testSetupDoesNothingOnPostPhase(): void
     {
         $setup = new DependencyGraphSetup();
+        $rootContainer = new ConfigurableContainer();
 
         // Calling in Post phase should not add anything
-        $setup->setup($this->makeDto(new DatabaseModule(), SetupPhase::Post));
-        $setup->setup($this->makeDto(new LoggerModule(), SetupPhase::Post));
+        $setup->setup($this->makeDto(new DatabaseModule(), SetupPhase::Post, $rootContainer));
+        $setup->setup($this->makeDto(new LoggerModule(), SetupPhase::Post, $rootContainer));
 
         $graph = $setup->getDependencyGraph();
         self::assertSame(0, $graph->getModuleCount());
         self::assertSame(0, $graph->getEdgeCount());
+        self::assertFalse($rootContainer->has(DependencyGraph::class));
     }
 
-    private function makeDto(PowerModule $module, SetupPhase $phase): PowerModuleSetupDto
-    {
+    private function makeDto(
+        PowerModule $module,
+        SetupPhase $phase,
+        ConfigurableContainer $rootContainer,
+    ): PowerModuleSetupDto {
         return new PowerModuleSetupDto(
             setupPhase: $phase,
             powerModule: $module,
-            rootContainer: new ConfigurableContainer(),
+            rootContainer: $rootContainer,
             moduleContainer: new ConfigurableContainer(),
             modularAppConfig: AppConfig::forAppRoot('/tmp'),
         );

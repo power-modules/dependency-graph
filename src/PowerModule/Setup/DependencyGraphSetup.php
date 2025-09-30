@@ -14,9 +14,7 @@ declare(strict_types=1);
 namespace Modular\DependencyGraph\PowerModule\Setup;
 
 use Modular\DependencyGraph\Graph\DependencyGraph;
-use Modular\DependencyGraph\Graph\ModuleNode;
-use Modular\Framework\PowerModule\Contract\ExportsComponents;
-use Modular\Framework\PowerModule\Contract\ImportsComponents;
+use Modular\DependencyGraph\PowerModule\ModuleNodeFactory;
 use Modular\Framework\PowerModule\Contract\PowerModuleSetup;
 use Modular\Framework\PowerModule\Setup\PowerModuleSetupDto;
 use Modular\Framework\PowerModule\Setup\SetupPhase;
@@ -31,6 +29,7 @@ class DependencyGraphSetup implements PowerModuleSetup
 {
     public function __construct(
         private DependencyGraph $graph = new DependencyGraph(),
+        private ModuleNodeFactory $moduleNodeFactory = new ModuleNodeFactory(),
     ) {
     }
 
@@ -46,22 +45,14 @@ class DependencyGraphSetup implements PowerModuleSetup
             return;
         }
 
-        $moduleName = $dto->powerModule::class;
+        if ($dto->rootContainer->has(DependencyGraph::class) === true) {
+            // Use existing graph from container if available
+            $this->graph = $dto->rootContainer->get(DependencyGraph::class);
+        } else {
+            $dto->rootContainer->set(DependencyGraph::class, $this->graph);
+        }
 
-        $exports = ($dto->powerModule instanceof ExportsComponents)
-            ? $dto->powerModule::exports()
-            : [];
-
-        $imports = ($dto->powerModule instanceof ImportsComponents)
-            ? $dto->powerModule::imports()
-            : [];
-
-        $moduleNode = new ModuleNode(
-            className: $moduleName,
-            shortName: $this->extractShortName($moduleName),
-            exports: $exports,
-            imports: $imports,
-        );
+        $moduleNode = $this->moduleNodeFactory::fromPowerModuleClassName($dto->powerModule::class);
 
         $this->graph->addModule($moduleNode);
     }
@@ -72,17 +63,5 @@ class DependencyGraphSetup implements PowerModuleSetup
     public function getDependencyGraph(): DependencyGraph
     {
         return $this->graph;
-    }
-
-    /**
-     * Extract a human-readable short name from a full class name.
-     *
-     * Transforms "App\Modules\User\UserModule" into "UserModule"
-     */
-    private function extractShortName(string $className): string
-    {
-        $parts = explode('\\', $className);
-
-        return end($parts);
     }
 }
